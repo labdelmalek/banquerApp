@@ -1,0 +1,38 @@
+<!--
+<div class="topnav one-edge-shadow ">
+    <a  > CIN : {{client.cin}} ******* Client : {{client.lastName}} {{client.firstName}} ****** {{this.currentAccountnumber}}  </a> 
+    <a (click)="oublierclientId()" style="background-color: red;">Changer Client</a>
+  
+  </div>
+-->
+  <div class="alert alert-info d-flex align-items-baseline" style="margin:15px auto 15px auto;box-shadow: 2px 1px 5px 5px #c0bebe;width:80%" role="alert">
+      <div class="user_icon" style="margin-right:20px" >
+          <button mat-raised-button
+          matTooltip="{{client?.firstName}} {{client?.lastName}}"
+         style="background:none;
+         transition: none !important;
+      box-shadow: none !important;">
+          <img src="../../../assets/img/client.png">
+  </button>
+         
+       </div>
+      <div><span>Vous pouvez visualiser les crédits du client <span style="font-weight: bold"> {{client.lastName}} {{client.firstName}}</span> ayant le CIN : <span style="font-weight: bold">{{client.cin}}</span> 
+        <button mat-button color="warn" (click)="oublierclientId()" style="margin-left: 20px;background: red;color:white">Changer client</button>
+      
+      </span></div>
+  </div>
+
+  <br>
+  <app-tab-credit [credits]="credits" (credit)="oncompte($event)"></app-tab-credit>
+  <br>
+
+<div class="container" *ngIf="selected">
+    <div  class="info">
+        <p >Id Crédit : {{currentCredit.id}}</p>
+       <p class="Montant ">{{currentCredit.somme}}MAD</p>
+    </div>
+    <div  class="info">
+      <p >Montant Restant : {{currentCredit.moisrest*currentCredit.mensualite}}MAD</p>
+      <button class="button-payer" (click)="payerCredit()">payer Credit Maintenant</button>
+  </div>
+</div>

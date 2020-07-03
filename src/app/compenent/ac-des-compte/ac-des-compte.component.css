@@ -1,0 +1,21 @@
+.b2{
+width:50%;
+margin-left: 3%;
+margin-right: 2%;
+}
+.b1{
+   width:50%;
+   margin-left: 2%;
+   margin-right: 3%;
+    }
+.b{
+   
+    width: 100%;
+   display: flex;
+    
+}
+@media (max-width:800px){
+    .b{
+        display: contents;
+    }
+}

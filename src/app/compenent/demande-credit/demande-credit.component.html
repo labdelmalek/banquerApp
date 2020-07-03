@@ -1,0 +1,114 @@
+<div class="grid-container">
+    <div class="example-container">
+        <form class="create-account-form" [formGroup]="form" #f  (ngSubmit)="addCredit(f)">
+            <h2>Formulaire de Demande de Crédit</h2> 
+
+            <div class="alert alert-primary d-flex align-items-baseline" style="margin: 5px auto 15px auto;width:90%;" role="alert">
+              <div class="user_icon" style="margin-right:20px" >
+                  <button mat-raised-button
+                  matTooltip="{{currentClient?.firstName}} {{currentClient?.lastName}}"
+                 style="background:none;
+                 transition: none !important;
+              box-shadow: none !important;">
+                  <img src="../../../assets/img/client.png">
+          </button>
+                 
+               </div>
+              <div><span>Vous pouvez effectuer une demande de crédit pour le client <span style="font-weight: bold"> {{currentClient?.firstName}} {{currentClient?.lastName}}</span> ayant le CIN : <span style="font-weight: bold">{{currentClient?.cin}}</span>  </span></div>
+            </div>
+
+
+            <div>
+                <mat-form-field appearance="outline">
+                <mat-label>N° Compte</mat-label>
+                <input matInput #input  placeholder="Ex. 1234567891203456"  disabled=true value="{{currentAccount.numinternational}}" pattern='^[0-9\\s]*$'>
+                <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+                <nav *ngIf="numcompte.errors?.pattern" style="color:red;font-size: smaller;">
+                  invalid
+                </nav> 
+                </mat-form-field> 
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                  <mat-label>Type de crédit</mat-label>
+                  <mat-select  required formControlName="typecredit">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let compte of comptes" [value]="compte">
+                      {{compte.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="compteControl.hasError('required')">Choisir un type de crédit</mat-error>
+                  <mat-hint>{{compteControl.value?.name}}</mat-hint>
+                </mat-form-field>
+          </div>
+              <div>
+                <mat-form-field appearance="outline" >
+                  <mat-label>Montant</mat-label>
+                  <input  matInput #input   pattern='^[0-9\\s]*$' class="example-right-align" formControlName="montant">
+                  <span matPrefix>$&nbsp;</span>
+                  <nav *ngIf="taux.errors?.pattern" style="color:red;font-size: smaller;">
+                  invalid
+                </nav> 
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" >
+                  <mat-label>Nombre de mois</mat-label>
+                  <input  matInput #input   pattern='^[0-9\\s]*$' class="example-right-align" formControlName="mois">
+                  <nav *ngIf="mois.errors?.pattern" style="color:red;font-size: smaller;">
+                  invalid
+                </nav> 
+                </mat-form-field>
+              </div>
+            <div>
+              <div>
+                <mat-form-field appearance="outline" >
+                  <mat-label>Nom</mat-label>
+                  <input disabled=true matInput #input   pattern='^[A-Za-z\s]*$'  value="{{currentClient.lastName}}">
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" >
+                  <mat-label>Prenom</mat-label>
+                  <input disabled=true matInput #input  pattern='^[A-Za-z\s]*$'  class="example-right-align"   value="{{currentClient.firstName}}">
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" >
+                  <mat-label>Cin</mat-label>
+                  <input disabled=true matInput #input minlength="7" maxlength="8"  pattern='^[A-Za-z][A-Za-z]?[0-9]*'  class="example-right-align"    value="{{currentClient.cin}}">
+                </mat-form-field>
+              </div>
+            <div>
+                <mat-form-field appearance="outline" >
+                  <mat-label>Capital</mat-label>
+                  <input matInput #input   pattern='^[0-9\\s]*$' class="example-right-align" formControlName="capitale">
+                  <span matPrefix>$&nbsp;</span>
+                  
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" >
+                  <mat-label>Salaire</mat-label>
+                  <input matInput #input   pattern='^[0-9\\s]*$' class="example-right-align" formControlName="salaire">
+                  <span matPrefix>$&nbsp;</span>
+                  
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Type de Salarié </mat-label>
+                    <mat-select  required formControlName="typesal">
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let emply of emplys" [value]="emply" >
+                        {{emply.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+                <button mat-raised-button >Ajouter un  Crédit</button>
+            </div>
+           
+          </form> 
+    </div>
+    

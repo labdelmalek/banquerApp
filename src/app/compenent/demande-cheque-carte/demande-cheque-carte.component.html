@@ -1,0 +1,162 @@
+<div style="width: 100%; padding-top: 1%;"><h1 style="font-size: 35px; text-align: center;">Demander Carte /Carnet de cheques</h1></div>
+
+
+<div class="alert alert-primary d-flex align-items-baseline" style="width:70%;margin: 30px auto 30px auto;" role="alert">
+    <div class="user_icon" style="margin-right:30px" >
+        <button mat-raised-button
+        matTooltip="{{client?.firstName}} {{client?.lastName}}"
+       style="background:none;
+       transition: none !important;
+    box-shadow: none !important;">
+        <img src="../../../assets/img/client.png">
+</button>
+       
+     </div>
+    <div><span>Vous pouvez demander une carte bancaire ou un carnet de chèque pour le compte numéro <span style="font-weight: bold">{{compteChoisi}}</span>  </span></div>
+  </div>
+
+
+<div class="grid-container">
+    <div class="example-container">
+    
+            <h2>Demande de Chèque</h2> 
+            
+            <div>
+                <p>Chèque Classique</p></div>
+            <div>
+                <button mat-raised-button (click)="addcheque()">Ajouter un Chèque</button>
+            </div>
+              </div>
+             
+
+          
+      
+   
+           
+        <div class="example-container-bleu">
+            <form [formGroup]="form" #newcarte (ngSubmit)="addcarte(newcarte)">
+            <h2>Demande de Carte</h2>
+            <div>
+            <mat-radio-group aria-label="Select an option" formControlName="typecarte">
+                <div class="radio">
+                    <mat-radio-button value="jeune">Carte Jeune</mat-radio-button>
+                </div>
+                <div  class="radio">
+                    <mat-radio-button value="femme">Carte Sayidaty</mat-radio-button>
+                </div>
+                <div class="radio">
+                    <mat-radio-button value="gold">Carte Gold</mat-radio-button>
+                </div>
+                <div class="radio">
+                    <mat-radio-button value="employee">Carte Employé</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </div> 
+            <div>
+                <button mat-raised-button>Ajouter une carte banquaire</button>
+            </div>
+           
+        </form>
+        </div>  
+</div>
+
+
+<!--Pour cheque    --------------------- -->
+
+<div class="container" style="margin-top: 30px;" *ngIf="ccheque"  >
+    <div class="row">
+        <div class="col-lg-6 col-sm-6">
+           
+             
+    <div style="border:1px solid black;" id="MyDiv1">
+    <div class="d-flex flex-column">
+    <h1 style="padding:10px;">Reçu de demande du chèque </h1>
+    <p style="padding:10px;">{{requestcc.dateRequest | date:'medium'}}</p>
+</div>
+   
+<div style="text-align: left; padding-left: 7px; margin-bottom:40px" >
+
+
+    <p style="background: lightblue; padding: 10px 0 10px 0"><span style="font-weight: bold">Recu N°: </span> {{requestcc.idRequest}} </p>
+    <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Type carnet : </span> Classique </p>
+
+    <p style=" background: lightblue;padding: 10px 0 10px 0"><span style="font-weight: bold;">Num compte : </span> {{requestcc.cheque.numcompte}} </p>
+    <div class="d-flex justify-content-between pr-3">
+        <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Frais_ch : </span> 30 DH </p>
+        <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">nbr pages : </span> 50 pages </p>
+    </div>
+    
+
+    <p  style=" background: lightblue; padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Signature : </span><img style="width:25px;height:auto;margin-left: 30px;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEsklEQVRoge2Za4hVVRTHf3fUyamxpjB7SNFjogwNEiStyexBo6lQJEyRjCY+CtQvgQaW9kAoAr+lhSVOVA7qh1ASUSsmRzEIhF6+8jXjQJSPGk2tHE8f1truc/e998w5Z4/nzof5w+Hevfa6a/33uevstfY60Ic+JMFQYBdwFvgSmAJUlpVRSqwEAuf6A1gGXFdGXolwFdAJXARGA/OA3dgFbSsftWgMAZqBP4F9wEaE8A5H71GVn8mUXQJsozCMAmAvMBO4WvXmqHxLGTh2i1HY+K8FGihc0N9AE/CDjl8oC9Nu8D5CbpmOX9PxeqAR+AZ5Vsyi/gKuzJ5mNAYCJxCC9wE5YL+Onwzp3QG0qnxlxhxjwYTR9zqu0/ExoF9IrwJo07mHsiQYF5sQcnN1bHLHUkevXuX7kX+tV+Fm4ALwDzAYqAJOIYTvcXQ/V/miLAnGxasIuXU6nqrjnY7eNciu1QXcmhm7BPgFIT5Rx1t1PMfRm63yrdlRi4/RCLnfgP5IgXgBOAfUOLo7VHdqlgTj4gOE3Ls6XqTjNY7eXUgOOQ1UZ8YuJgZiH+oRKtuj4/GO7lKVf9QTjiuQDNuC3JkTyLY5JqW955Xcdzp+EJu1NwKTkRwSzh0Pp/R1CTWULuj+BZ5NaG8IsoAAeFllHxax3QF8qt9/xTN3VAHfqrHjwCxk768BFmPrnutj2tsZItqOxHwVUroHwFjgFWyYmet1n0UAfKaGjgC3FJnfrPMLY9prRUJzPXCnykyY7XJ0n1J5F3BbAs4FmKSGOoG7S+iYBPaVhx9zM15y5DNV/rWHbSqBw2pofoReLTaG0yCcO6515rar7caUtgF7N35Edo5SqFa90yn9mBKl2ZHXIrmjEzm7p0IOOKAOGmLob0c2hDQwD/UER/62yleltAvYw/0Rov8NX5gSpYPCc8dRnXvEx8FqNfKGj5EYWEF+iWLwuMoP4pE7ckgRFwDD0hqJgXCJcq8z94nKl/g4GKlG2nyMxMBz5JcoBtXIxnEROaPHhvsM1OvnpjTsEmCafjY58gZkMS3AIR8HXxB/t0oLc7w9T2H/1pRD032dmObXSF9DEVioPtY68tuRkDoDDPJ1Yoq3wb6GIuAebw3eUvlqXwc5pEAL8Mim3eAB8o+3Yd+HdG6cr5MKbNl8uRayXO2/58hNEj5MD/WszqrB7s7GpgeVBFcAJ9X+cGeuSeVvJrRZEvtKODIYgT3ddQA3JbA9BXsQq8du/YOQBzxx7ojCOvLbl2E0qsPwyc3tP0VhgfPbNuQBN533ltSsi+AZbMFYi4TYWGBDiMAqbHX6TgLbc/U3P2Or6/D1Yk8swKA/NnTcqxM5p4AkrADpx4Ik0Hakg+62cwxmYG9EDngCKUcCpCvjnTtc1CAd8eNIPO9GQuCGkI5p/e9FmgXhlzAnKf4K2bw+aEZe0pgu/CnK+JqgElmoId+FHIlNsqsr8pvJ2GehRb//DtyfAd9ITELC6SiyI4GcLQLg4yL6j5Efqu0UvjroNRiKjfvF5GfvMdhFHMCzxZMFngb+w/aqzDHWFIs/ATeWh1py1CHJtQ0YoDKz5bqNhl6PfuTvXq16Xc6GRh96Df4H20V3Dt6HbqMAAAAASUVORK5CYII=" alt="signé" /></p>
+    
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<button style="margin-top:7px;" class="btn btn-primary" *ngIf="ccheque"  value="CPTURE" (click)="downloadAsPDF()">Enregistrer sous forme PDF</button>
+<!------pour cbancaire   -------------------->
+
+
+
+<div class="container" style="margin-top: 30px;" *ngIf="cbancaire"  >
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+               
+                 
+        <div style="border:1px solid black;" id="MyDiv">
+        <div class="d-flex flex-column">
+        <h1 style="padding:10px;">Reçu de demande du carte bancaire </h1>
+        <p style="padding:10px;">{{requestcb.dateRequest | date:'medium'}}</p>
+    </div>
+       
+    <div style="text-align: left; padding-left: 7px; margin-bottom:40px" >
+    
+    
+        <p style="background: lightblue; padding: 10px 0 10px 0"><span style="font-weight: bold">Recu N°: </span> {{requestcb.idRequest}} </p>
+        <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Type carte : </span> {{requestcb.cardType}} </p>
+    
+        <p style=" background: lightblue;padding: 10px 0 10px 0"><span style="font-weight: bold;">Num compte : </span> {{requestcb.cheque.numcompte}} </p>
+        <div class="d-flex justify-content-between pr-3" *ngIf="requestcb.cardType == 'femme'">
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond paie : </span> 5000 DH </p>
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond retrait : </span> 1500 DH </p>
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">prix carte : </span> 60 DH </p>
+        </div>
+        <div class="d-flex justify-content-between pr-3" *ngIf="requestcb.cardType == 'gold'">
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond paie : </span> 2000 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond retrait : </span> 2000 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">prix carte : </span> 500 pages </p>
+        </div>
+        <div class="d-flex justify-content-between pr-3" *ngIf="requestcb.cardType == 'jeune'">
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond paie : </span> 3000 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond retrait : </span> 1500 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">prix carte : </span> gratuit ! </p>
+        </div>
+        <div class="d-flex justify-content-between pr-3" *ngIf="requestcb.cardType == 'employee'">
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond paie : </span> 1500 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond retrait : </span> 5000 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">prix carte : </span> 120 pages </p>
+        </div>
+
+        
+    
+        <p  style=" background: lightblue; padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Signature : </span><img style="width:25px;height:auto;margin-left: 30px;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEsklEQVRoge2Za4hVVRTHf3fUyamxpjB7SNFjogwNEiStyexBo6lQJEyRjCY+CtQvgQaW9kAoAr+lhSVOVA7qh1ASUSsmRzEIhF6+8jXjQJSPGk2tHE8f1truc/e998w5Z4/nzof5w+Hevfa6a/33uevstfY60Ic+JMFQYBdwFvgSmAJUlpVRSqwEAuf6A1gGXFdGXolwFdAJXARGA/OA3dgFbSsftWgMAZqBP4F9wEaE8A5H71GVn8mUXQJsozCMAmAvMBO4WvXmqHxLGTh2i1HY+K8FGihc0N9AE/CDjl8oC9Nu8D5CbpmOX9PxeqAR+AZ5Vsyi/gKuzJ5mNAYCJxCC9wE5YL+Onwzp3QG0qnxlxhxjwYTR9zqu0/ExoF9IrwJo07mHsiQYF5sQcnN1bHLHUkevXuX7kX+tV+Fm4ALwDzAYqAJOIYTvcXQ/V/miLAnGxasIuXU6nqrjnY7eNciu1QXcmhm7BPgFIT5Rx1t1PMfRm63yrdlRi4/RCLnfgP5IgXgBOAfUOLo7VHdqlgTj4gOE3Ls6XqTjNY7eXUgOOQ1UZ8YuJgZiH+oRKtuj4/GO7lKVf9QTjiuQDNuC3JkTyLY5JqW955Xcdzp+EJu1NwKTkRwSzh0Pp/R1CTWULuj+BZ5NaG8IsoAAeFllHxax3QF8qt9/xTN3VAHfqrHjwCxk768BFmPrnutj2tsZItqOxHwVUroHwFjgFWyYmet1n0UAfKaGjgC3FJnfrPMLY9prRUJzPXCnykyY7XJ0n1J5F3BbAs4FmKSGOoG7S+iYBPaVhx9zM15y5DNV/rWHbSqBw2pofoReLTaG0yCcO6515rar7caUtgF7N35Edo5SqFa90yn9mBKl2ZHXIrmjEzm7p0IOOKAOGmLob0c2hDQwD/UER/62yleltAvYw/0Rov8NX5gSpYPCc8dRnXvEx8FqNfKGj5EYWEF+iWLwuMoP4pE7ckgRFwDD0hqJgXCJcq8z94nKl/g4GKlG2nyMxMBz5JcoBtXIxnEROaPHhvsM1OvnpjTsEmCafjY58gZkMS3AIR8HXxB/t0oLc7w9T2H/1pRD032dmObXSF9DEVioPtY68tuRkDoDDPJ1Yoq3wb6GIuAebw3eUvlqXwc5pEAL8Mim3eAB8o+3Yd+HdG6cr5MKbNl8uRayXO2/58hNEj5MD/WszqrB7s7GpgeVBFcAJ9X+cGeuSeVvJrRZEvtKODIYgT3ddQA3JbA9BXsQq8du/YOQBzxx7ojCOvLbl2E0qsPwyc3tP0VhgfPbNuQBN533ltSsi+AZbMFYi4TYWGBDiMAqbHX6TgLbc/U3P2Or6/D1Yk8swKA/NnTcqxM5p4AkrADpx4Ik0Hakg+62cwxmYG9EDngCKUcCpCvjnTtc1CAd8eNIPO9GQuCGkI5p/e9FmgXhlzAnKf4K2bw+aEZe0pgu/CnK+JqgElmoId+FHIlNsqsr8pvJ2GehRb//DtyfAd9ITELC6SiyI4GcLQLg4yL6j5Efqu0UvjroNRiKjfvF5GfvMdhFHMCzxZMFngb+w/aqzDHWFIs/ATeWh1py1CHJtQ0YoDKz5bqNhl6PfuTvXq16Xc6GRh96Df4H20V3Dt6HbqMAAAAASUVORK5CYII=" alt="signé" /></p>
+        
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <button style="margin-top:7px;" class="btn btn-primary"  *ngIf="cbancaire"  value="CPTURE" (click)="downloadAsPDF1()">Enregistrer sous forme PDF</button>
+    
+    
+    
+    
+    
+    
+    
+    
+          
+    

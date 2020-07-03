@@ -1,0 +1,92 @@
+.info{
+    background-color:rgb(224, 221, 209);
+    display: flex;                  /* establish flex container */
+    flex-direction: row;            /* default value; can be omitted */
+    flex-wrap: nowrap;              /* default value; can be omitted */
+    justify-content: space-between; 
+    margin-bottom: 2%;
+}
+.balance{
+    color: #36d64b;
+}
+p{
+    margin: 1.5%;
+    font-size: 12pt;
+}
+.account{
+    padding:10px;
+    box-sizing: border-box;
+  }
+  table{
+    background: white;
+    color:rgb(121, 118, 118);
+    width:100%;
+  }
+  
+  table img{
+    width:2.5vw;
+    height:auto;
+  }
+  .table td, .table th {
+  vertical-align: top;
+  border:none;
+  }
+  
+  table tr.highlight {
+    background-color: none !important;
+    border-left: 2px solid #00B4DB;
+    background: rgb(245, 244, 244);
+  }
+  
+  .table td{
+    font-size:16px;
+    padding: 5px;
+    text-align: center;
+      vertical-align: middle;
+  }
+  .table .first_tr{
+  border-top: 1px solid #ddd;
+  }
+  .table .first_td{
+    width:20px;
+    padding-left: 3vw;
+  }
+  .table .currency{
+    padding-left: 2vw;
+  }
+  #col2{
+    padding-left:5vw;
+  }
+  
+  @media (max-width: 783px) {
+  
+     .tab1 tr th:nth-child(1),.tab1 tr td:nth-child(1),
+  
+    tr th:nth-child(6),tr td:nth-child(6),
+  
+    tr th:nth-child(4),tr td:nth-child(4)
+  
+  
+    {
+  
+      display:none;
+    }
+  
+  
+    }
+  .row{
+      margin : 2%;
+  }
+  
+  
+  .carte{
+    width:28vw;
+    padding-bottom: 10px;
+  
+  }
+  
+  .col{
+      width: 50%;
+  }
+
+  

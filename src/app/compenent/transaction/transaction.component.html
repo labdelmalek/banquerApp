@@ -1,0 +1,23 @@
+<br>
+<div class="container">
+    <div  class="info">
+        <p >Numéro de compte : {{currentAccount.numcompte}}</p>
+       <p class="balance">${{currentAccount.balance}}</p>
+    </div>
+</div>
+
+<div class="container">
+    <app-transaction-form [currentAccount]="currentAccount"></app-transaction-form>
+</div>
+<br>
+<div class="container" style="display: flex;">
+    <div class="col">
+      <h2   style=" color: darkgrey; font-weight: 300;">Transactions</h2>
+    <app-dashrecent-activities [transaction]="transactionCmp"></app-dashrecent-activities>
+        </div> 
+
+        <div class="col">
+            <h2   style=" color: darkgrey; font-weight: 300;">Mouvement</h2>
+          <app-mouvement-cmpte [transaction]="transactionssCmp"></app-mouvement-cmpte>
+                </div>
+</div>

@@ -1,0 +1,12 @@
+
+<div class="topnav one-edge-shadow ">
+   
+    <a *ngIf="typecompte" routerLink="/Snavbar/demandeCh" >Ajouter Carte B / Chèque</a>
+    <a routerLink="/Snavbar/transactions">Transactions</a>
+    <a routerLink="/Snavbar/demandeCr" >Demande de Crédit</a>
+    <a routerLink="/Snavbar/encaCh">Encaissement de Chèque</a>
+    <a routerLink="/Snavbar/retrait" >Retrait</a>
+    <a *ngIf="hasRoute('/operationssurcompte')" (click)="oublierclientId()" style="background-color: red;">Changer Client</a>
+
+</div> 
+<router-outlet></router-outlet>

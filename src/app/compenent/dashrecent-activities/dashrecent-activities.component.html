@@ -1,0 +1,32 @@
+ <table class="table table-hover">
+    <tbody>
+       <tr *ngFor="let c of transaction |  sortBy:'desc':'date' | paginate:{id : 'listing_paginatione',
+        itemsPerPage: 2,
+        currentPage: page,
+        totalItems: totalRecords}" >
+            <td class="mt-0 mb-1" > 
+                <p style="margin:0; color: #6A6A6A; font-size: 10pt;">{{c.date | date:'MMM'}} </p>
+                <p style="font-size: 20px;color: #6A6A6A !important;font-weight: bold;">{{c.date | date:'dd'}}</p>                        
+            </td>   
+            <td > 
+                <span *ngIf="c.is_sender==false"  style="font-size:20px;color: #6A6A6A !important; font-weight: lighter;" >{{c.sender.numcompte}}</span>
+                 <span *ngIf="c.is_sender==true"  style="font-size:20px;color: #6A6A6A !important; font-weight: lighter;"  > {{c.receiver.numcompte}}</span>
+
+            </td> 
+            <td>
+                <span *ngIf="c.bq != undefined"  style="font-size:20px;color: #6A6A6A !important; font-weight: lighter;"  >Operateur : {{c.bq.id}}</span>
+                <span *ngIf="c.bq == undefined"  style="font-size:20px;color: #6A6A6A !important; font-weight: lighter;"  >Operateur : client</span>
+
+                <span  *ngIf="c.bq != undefined" style="font-size:20px;color: #6A6A6A !important; font-weight: lighter;"  > {{c.bq.lastName}} {{c.bq.firstName}} </span>
+
+            </td>
+            <td > 
+                <span *ngIf="c.is_sender==false" class="badge Good" style="font-size:20px;color: #6A6A6A !important; font-weight: bold;" >+{{c.somme}}<span style="font-size:small ;">MAD</span> </span>
+                <span *ngIf="c.is_sender==true" class="badge Ndanger" style="font-size:20px;color: #6A6A6A !important; font-weight: bold;"  >  -{{c.somme}} <span style="font-size:small ;">MAD</span></span>    
+            </td> 
+        </tr>
+    </tbody>
+</table>
+<div>
+  <pagination-controls id="listing_paginatione" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+ </div>

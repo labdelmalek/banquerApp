@@ -1,0 +1,77 @@
+
+<div class="topnav one-edge-shadow ">
+  <a routerLink="/operationssurcompte" >Operation sur comptes</a>
+  <a routerLink="/ajoutercompte"> Ajouter compte</a>
+  <a routerLink="/mescredits">Les Crédits</a>
+  <a (click)="oublierclientId()" style="background-color: red;">Changer Client</a>
+</div> 
+<br><br>
+<div >
+  <form class="create-account-form grid-container" [formGroup]="emailFormControl" #donnesuser (ngSubmit)="signup(donnesuser)">
+<div class="example-container">
+        <h2>Informations Générales</h2> 
+        <div>
+            <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input matInput #input  placeholder="Ex. Oumaima" pattern='^[A-Za-z\\s]*$' formControlName="lastName" value="{{client.lastName}}">
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            <nav *ngIf="lastName.errors?.pattern" style="color:red;font-size: smaller;">
+              invalid
+            </nav> 
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+            <mat-label>Prénom</mat-label>
+            <input matInput #input type="text" placeholder="Ex. Barbache"  pattern='^[A-Za-z\\s]*$' formControlName="firstName"  value="{{client.firstName}}">
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            <nav *ngIf="firstName.errors?.pattern" style="color:red;font-size: smaller;">
+              invalid
+            </nav> 
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+            <mat-label>Adresse</mat-label>
+            <input matInput #input  placeholder="Ex. quartier qods, Bernoussi, Casabanca"  formControlName="adresse" value="{{client.adresse}}">
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            </mat-form-field>
+            <div>
+                <mat-form-field appearance="outline">
+                <mat-label>CIN</mat-label>
+                <input matInput #input  placeholder="Ex. BB1234568"  disabled=true value="{{client.cin}}">
+                <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+                </mat-form-field>
+            </div>              
+        </div>
+   </div>
+    <div class="example-container-bleu">
+        <div class="example-form">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [errorStateMatcher]="matcher"
+                       placeholder="Ex. pat@example.com"  formControlName="email" value="{{client.email}}">
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Veuillez saisir une adresse email valide
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+        </div>
+       
+          
+          
+        <div>
+            <mat-form-field hintLabel="Max 10 characters" appearance="outline" >
+                <mat-label>Téléphone</mat-label>
+                <input  matInput #input maxlength="10" placeholder="Ex. 0661141512" formControlName="phone" value="{{client.phone}}">
+              </mat-form-field>
+        </div>
+        <div>
+          <button mat-raised-button >Mettre à jour</button>
+        </div>
+    </div>  
+  </form>
+</div>

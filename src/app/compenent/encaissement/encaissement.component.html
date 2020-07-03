@@ -1,0 +1,73 @@
+<div>
+<div class="alert alert-primary d-flex align-items-baseline" style="margin:15px auto 15px auto;width:70%;" role="alert">
+    <div class="user_icon" style="margin-right:20px" >
+        <button mat-raised-button
+        matTooltip="{{ client?.firstName}} {{client?.lastName}}"
+       style="background:none;
+       transition: none !important;
+    box-shadow: none !important;">
+        <img src="../../../assets/img/client.png">
+</button>
+       
+     </div>
+    <div><span>Vous pouvez effectuer un encaissement de chèque pour le client <span style="font-weight: bold"> {{client?.firstName}} {{client?.lastName}}</span> ayant le CIN : <span style="font-weight: bold">{{client?.cin}}</span>  </span></div>
+</div>
+<div class="example-container">
+    <form class="create-account-form"  [formGroup]="form" #f  (ngSubmit)="encaisserCheque(f)"> 
+        <h2>Encaissement chèque</h2>
+        <div>
+            <mat-form-field appearance="standard" >
+            <mat-label>N° International (Bénéficiaire)</mat-label>
+            <input matInput #input maxlength="24" placeholder="Ex. 123456789123456789123456" value="{{currentAccount.numinternational}}" disabled=true>
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field hintLabel="Max 24 characters" appearance="standard" >
+                <mat-label>N° International</mat-label>
+                <input matInput #input maxlength="24" placeholder="Ex. 123456789123456789123456" formControlName="numinternational">
+              </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="standard" >
+            <mat-label>Montant</mat-label>
+            <input matInput type="number" class="example-right-align" formControlName="montant">
+            <span matPrefix>$&nbsp;</span>
+          </mat-form-field>
+        </div>
+        <div> 
+            <button mat-raised-button>Encaisser</button>
+        </div>
+        </form>
+
+        
+      </div>
+    </div>
+    <div class="container" style="margin-top: 30px;"  *ngIf="isEncaiss" >
+           
+        <div class="row">
+                <div class="col-lg-3 col-sm-3"> </div>
+            <div class="col-lg-6 col-sm-6" style="text-align: center">
+        <div style="border:1px solid black;" id="MyDiv">
+        <h1 style="padding:10px;">Reçu d'encaissement du chèque </h1>
+        <h2>(compte à compte)</h2>
+    <div style="text-align: left; padding-left: 7px; margin-bottom:40px" >
+
+        <p style="background: lightgray; padding: 10px 0 10px 0"><span style="font-weight: bold">Recu N° : </span> {{NewCheque.id}} </p>
+        <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Montant Totale : </span> {{NewCheque.montant}}</p>
+        <p style="background: lightgray; padding: 10px 0 10px 0"><span style="font-weight: bold">Num cheque : </span> {{NewCheque.numcheque}}</p>
+        <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">A (num) : </span> {{NewCheque.numinternational}} </p>
+        <p style="background: lightgray; padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Lieu, Date : </span>Le Maroc {{NewCheque.date_encaissement}} </p>
+        <p  style=" padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Signature : </span><img style="width:25px;height:auto;margin-left: 30px;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEsklEQVRoge2Za4hVVRTHf3fUyamxpjB7SNFjogwNEiStyexBo6lQJEyRjCY+CtQvgQaW9kAoAr+lhSVOVA7qh1ASUSsmRzEIhF6+8jXjQJSPGk2tHE8f1truc/e998w5Z4/nzof5w+Hevfa6a/33uevstfY60Ic+JMFQYBdwFvgSmAJUlpVRSqwEAuf6A1gGXFdGXolwFdAJXARGA/OA3dgFbSsftWgMAZqBP4F9wEaE8A5H71GVn8mUXQJsozCMAmAvMBO4WvXmqHxLGTh2i1HY+K8FGihc0N9AE/CDjl8oC9Nu8D5CbpmOX9PxeqAR+AZ5Vsyi/gKuzJ5mNAYCJxCC9wE5YL+Onwzp3QG0qnxlxhxjwYTR9zqu0/ExoF9IrwJo07mHsiQYF5sQcnN1bHLHUkevXuX7kX+tV+Fm4ALwDzAYqAJOIYTvcXQ/V/miLAnGxasIuXU6nqrjnY7eNciu1QXcmhm7BPgFIT5Rx1t1PMfRm63yrdlRi4/RCLnfgP5IgXgBOAfUOLo7VHdqlgTj4gOE3Ls6XqTjNY7eXUgOOQ1UZ8YuJgZiH+oRKtuj4/GO7lKVf9QTjiuQDNuC3JkTyLY5JqW955Xcdzp+EJu1NwKTkRwSzh0Pp/R1CTWULuj+BZ5NaG8IsoAAeFllHxax3QF8qt9/xTN3VAHfqrHjwCxk768BFmPrnutj2tsZItqOxHwVUroHwFjgFWyYmet1n0UAfKaGjgC3FJnfrPMLY9prRUJzPXCnykyY7XJ0n1J5F3BbAs4FmKSGOoG7S+iYBPaVhx9zM15y5DNV/rWHbSqBw2pofoReLTaG0yCcO6515rar7caUtgF7N35Edo5SqFa90yn9mBKl2ZHXIrmjEzm7p0IOOKAOGmLob0c2hDQwD/UER/62yleltAvYw/0Rov8NX5gSpYPCc8dRnXvEx8FqNfKGj5EYWEF+iWLwuMoP4pE7ckgRFwDD0hqJgXCJcq8z94nKl/g4GKlG2nyMxMBz5JcoBtXIxnEROaPHhvsM1OvnpjTsEmCafjY58gZkMS3AIR8HXxB/t0oLc7w9T2H/1pRD032dmObXSF9DEVioPtY68tuRkDoDDPJ1Yoq3wb6GIuAebw3eUvlqXwc5pEAL8Mim3eAB8o+3Yd+HdG6cr5MKbNl8uRayXO2/58hNEj5MD/WszqrB7s7GpgeVBFcAJ9X+cGeuSeVvJrRZEvtKODIYgT3ddQA3JbA9BXsQq8du/YOQBzxx7ojCOvLbl2E0qsPwyc3tP0VhgfPbNuQBN533ltSsi+AZbMFYi4TYWGBDiMAqbHX6TgLbc/U3P2Or6/D1Yk8swKA/NnTcqxM5p4AkrADpx4Ik0Hakg+62cwxmYG9EDngCKUcCpCvjnTtc1CAd8eNIPO9GQuCGkI5p/e9FmgXhlzAnKf4K2bw+aEZe0pgu/CnK+JqgElmoId+FHIlNsqsr8pvJ2GehRb//DtyfAd9ITELC6SiyI4GcLQLg4yL6j5Efqu0UvjroNRiKjfvF5GfvMdhFHMCzxZMFngb+w/aqzDHWFIs/ATeWh1py1CHJtQ0YoDKz5bqNhl6PfuTvXq16Xc6GRh96Df4H20V3Dt6HbqMAAAAASUVORK5CYII=" alt="signé" /></p>
+        
+  
+    </div>
+    
+    
+      </div>
+      <button style="margin-top:7px;" class="btn btn-primary" *ngIf="isEncaiss" value="CPTURE" (click)="downloadAsPDF()">Enregistrer sous forme PDF</button>
+      </div>
+      <div class="col-lg-3 col-sm-3"> </div>
+      </div>
+  </div>
+  

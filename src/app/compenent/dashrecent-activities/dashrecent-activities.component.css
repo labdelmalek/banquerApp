@@ -1,0 +1,44 @@
+.Danger{
+    background-color:red;
+}
+.Ndanger{
+    background-color: rgba(250, 188, 118, 0.863);
+}
+.Good{
+    background-color: rgba(135, 220, 135, 0.83);
+}
+
+
+@media only screen and (max-width:1024px){
+    
+    table{
+        width: 100%;
+    }
+  }
+
+  @media only screen and (max-width:700px){
+    
+    table{
+        width: 100%;   
+    }
+    p{
+        font-size: 1rem!important;
+    }
+    span{
+       font-size: 1rem!important;
+    }
+  }
+
+@media only screen and (min-width:360px){
+    
+    table{
+        width: 100%;
+    }
+    p{
+        font-size: 1rem!important;
+    }
+    span{
+        font-size: 1rem!important;
+    }
+    
+  }

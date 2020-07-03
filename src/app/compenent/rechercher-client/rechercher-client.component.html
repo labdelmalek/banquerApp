@@ -1,0 +1,16 @@
+<div class="example-container">
+    <form class="create-account-form" [formGroup]="form" #ClientCin (ngSubmit)="searchClientByCin(ClientCin)"> 
+      <h3>Rechercher Client</h3>
+      <h5>(Veuillez saisir le CIN du client)</h5>
+        <div>
+            <mat-form-field >
+            <mat-label>CIN</mat-label>
+            <input matInput #input maxlength="10" placeholder="Ex : EE123456" formControlName="cin">
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            </mat-form-field>
+        </div>
+       <div>
+            <button mat-raised-button>Valider</button>
+        </div>
+        </form>
+</div>

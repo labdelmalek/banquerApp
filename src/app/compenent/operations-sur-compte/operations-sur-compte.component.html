@@ -1,0 +1,49 @@
+<div style="width: 100%; padding-top: 1%;"><h1 style="font-size: 35px; text-align: center;">Créer Un nouveau compte</h1></div>
+
+<br>
+<app-sous-navbar  [typecompte]="typecompte"></app-sous-navbar>
+
+<div class="alert alert-primary d-flex align-items-baseline" style="width:66%;margin: 30px auto 30px auto;" role="alert">
+  <div class="user_icon" style="margin-right: 15px"><button mat-raised-button
+    matTooltip="{{client?.firstName}} {{client?.lastName}}"
+   style="background:none;
+   transition: none !important;
+box-shadow: none !important;">
+    <img src="../../../assets/img/client.png">
+</button></div>
+  <div><span>Voici les comptes du Client : <span style="font-weight: bold">{{client.lastName}} {{client.firstName}}</span> avec CIN <span style="font-weight: bold">{{client.cin}}</span> / {{currentAccountnumber1}} <span style="font-weight: bold">{{this.currentAccountnumber}} </span> </span></div>
+</div>
+
+<app-dashboard-account-table [accounts]="accounts" (ccompte)="oncompte($event)"></app-dashboard-account-table>
+<div class="container"> 
+  <div  class="info">
+      <p *ngIf="selected" >Numero de compte : {{currentAccount.numcompte}}</p>
+     <p  *ngIf="selected"class="balance" > Balance : {{currentAccount.balance}} MAD</p>
+      <button  *ngIf="selected" (click)="fermerCompte()" style="width: 20%;background-color: red; color: white; margin : 10px; border: none ; border-radius: 20px">Fermer Compte</button>
+     <p *ngIf="!selected">Veuillez selectionner un compte du tableau : </p>
+  </div>
+  
+<div class="container row">
+
+<div class="col">
+<app-dashrecent-activities [transaction]="transaction"></app-dashrecent-activities>
+      </div>
+
+ 
+
+
+  <div class="col " *ngIf="containsCarte">
+  <app-carte-b  [carte]="carte" [owner]="owner"></app-carte-b>
+  </div>
+
+
+
+  <div class="col " *ngIf="!containsCarte">
+<div  class="  d-flex flex-column align-items-center">
+<div class="alert alert-danger ">Aucune carte est liée à ce compte </div>
+</div>
+
+</div>
+
+</div>
+</div>

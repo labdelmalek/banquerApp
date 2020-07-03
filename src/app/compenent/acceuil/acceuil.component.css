@@ -1,0 +1,64 @@
+ngb-carousel {
+    max-width: 100%;
+    margin: 0;
+    color: black;
+    
+}
+
+ngb-carousel img {
+    width: 100%;
+    outline: none;
+    height: 80vh;
+    opacity: .8;
+    
+  
+}
+
+ngb-carousel {
+    width: inherit;
+    height: inherit;
+    color: black;
+
+}
+
+.carousel-inner {
+    overflow: visible;
+}
+
+.carousel-item {
+    display: flex !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+    z-index: -1;
+}
+.carousel-item.active{
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+}
+
+.carousel-control-prev {
+     z-index: 20;
+     color: black;
+
+}
+
+.carousel-control-next {
+     z-index: 20;
+     background-color: black;
+
+}
+
+.carousel-indicators{
+    z-index: 20;
+    background-color: black;
+
+} 
+
+button{
+    margin: 15px;
+    color: black;
+
+}
+

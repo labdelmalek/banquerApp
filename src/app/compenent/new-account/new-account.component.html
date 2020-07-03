@@ -1,0 +1,105 @@
+<div style="width: 100%; padding-top: 1%;"><h1 style="font-size: 35px; text-align: center;">Créer nouveau compte</h1></div>
+
+
+<div class="alert alert-info d-flex align-items-baseline" style="margin:15px auto 15px auto;box-shadow: 2px 1px 5px 5px #c0bebe;width:80%" role="alert">
+    <div class="user_icon" style="margin-right:20px" >
+        <button mat-raised-button
+        matTooltip="{{client?.firstName}} {{client?.lastName}}"
+       style="background:none;
+       transition: none !important;
+    box-shadow: none !important;">
+        <img src="../../../assets/img/client.png">
+</button>
+       
+     </div>
+    <div><span>Vous pouvez créer un nouveau compte pour le client <span style="font-weight: bold"> {{client.lastName}} {{client.firstName}}</span> ayant le CIN <span style="font-weight: bold">{{client.cin}}</span> 
+      <button mat-button color="warn" (click)="oublierclientId()" style="margin-left: 20px;background: red;color:white">Changer client</button>
+    
+    </span></div>
+</div>
+
+<div class="example-container">
+    <form class="create-account-form" [formGroup]="form" #newcompte (ngSubmit)="addcompte(newcompte)">
+        <h2>Informations du Compte</h2> 
+
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Type de compte</mat-label>
+            <mat-select  required formControlName="typecompte">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let compte of comptes" [value]="compte">
+                {{compte.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="compteControl.hasError('required')">Choisir un compte</mat-error>
+            <mat-hint>{{compteControl.value?.name}}</mat-hint>
+          </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" >
+          <mat-label>Montant</mat-label>
+          <input matInput type="number" class="example-right-align" formControlName="montant">
+          <span matPrefix>$&nbsp;</span>
+          
+        </mat-form-field>
+      </div>
+    <div>
+        <button>Ajouter un nouveau Compte</button>
+    </div>
+    <label *ngIf="labValider" style="color: aquamarine;border-width: 2px;font-weight: bolder;margin-top:10px;width: 20%;">Inscription Effectuée</label>
+    </form>
+
+    <div class="container" style="margin-top: 30px;" *ngIf="labValider"  >
+      <div class="row">
+          <div class="col-lg-3 col-sm-3"></div>
+        <div class="col-lg-6 col-sm-6" style="border:1px solid black;"  >
+          <div id="MyDIv">
+         
+      <h1 style="padding:10px; background: lightblue">Reçu d'ouverture d'un compte :</h1>
+      <div class="agence_property" style="text-align: left; padding-left: 7px; margin-bottom:40px">
+      <p><span style="font-weight: bold">Agence : </span> {{agence.name}} ,{{agence.adresse}} </p>
+      <p><span style="font-weight: bold">Devise : </span> Dirham Marocain (MAD)</p>
+      
+      <p><span style="font-weight: bold;margin-bottom: 10px;">Titulaire : </span>{{client.lastName}} {{client.firstName}}</p>
+      <p style="font-weight: 200;margin-bottom: 10px;">Nous soulignons que Madame,Monsieur <span style="font-weight: bold"> {{client.lastName}} {{client.firstName}} </span>a ouvert un compte
+          au sein de notre établissement . </p>
+     </div>
+      
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Type compte</th>
+            <th scope="col">Montant</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+         
+            <td>{{typeC}}</td>
+            <td>{{montant}}</td>
+           
+           
+          </tr>
+         
+        </tbody>
+      </table>
+      <p *ngIf="typeC == 'Cheque'" style="margin: 7px 0 7px 0">Frais d'ouverture : 200 DH</p>
+      <p *ngIf="typeC == 'Epargne'" style="margin: 7px 0 7px 0">taux d'intérêts : 2%</p>
+      <hr style="margin:40px 0 0px 0">
+      <div class="bas">
+        <span>email : {{agence.email}}</span><span style="padding-left:17px">phone : {{agence.phone}}</span>  <span style="padding-left:17px">fax : {{agence.fax}}</span>
+        
+      
+      </div> 
+
+  
+ 
+</div>
+<div class="col-lg-3 col-sm-3"></div>
+</div>
+  </div>
+    </div>
+    <button style="margin-top:7px;" class="btn btn-primary" *ngIf="labValider" value="CPTURE" (click)="downloadAsPDF()">Enregistrer sous forme PDF</button>
+<button style="margin-top:7px;" class="btn btn-primary"  *ngIf="labValider && typeC == 'Cheque'" (click)="demandeCC()">suivant</button>
+</div>

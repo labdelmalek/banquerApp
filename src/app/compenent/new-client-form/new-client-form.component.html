@@ -1,0 +1,76 @@
+<div style="width: 100%; padding-top: 1%;"><h1 style="font-size: 35px; text-align: center;">Inscription nouveau client</h1></div>
+
+<div >
+  <form class="create-account-form grid-container" [formGroup]="emailFormControl" #donnesuser (ngSubmit)="signup(donnesuser)">
+<div class="example-container">
+        <h2>Informations Générales</h2> 
+        <div>
+            <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input matInput #input  placeholder="Ex. Oumaima" pattern='^[A-Za-z\\s]*$' formControlName="lastName">
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            <nav *ngIf="lastName.errors?.pattern" style="color:red;font-size: smaller;">
+              invalid
+            </nav> 
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+            <mat-label>Prénom</mat-label>
+            <input matInput #input type="text" placeholder="Ex. Barbache"  pattern='^[A-Za-z\\s]*$' formControlName="firstName">
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            <nav *ngIf="firstName.errors?.pattern" style="color:red;font-size: smaller;">
+              invalid
+            </nav> 
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+            <mat-label>Adresse</mat-label>
+            <input matInput #input  placeholder="Ex. quartier qods, Bernoussi, Casabanca"  formControlName="adresse">
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            </mat-form-field>
+            <div>
+                <mat-form-field appearance="outline">
+                <mat-label>CIN</mat-label>
+                <input matInput #input  placeholder="Ex. BB1234568"  formControlName="cin">
+                <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+                </mat-form-field>
+            </div>              
+        </div>
+   </div>
+    <div class="example-container-bleu">
+        <div class="example-form">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [errorStateMatcher]="matcher"
+                       placeholder="Ex. pat@example.com"  formControlName="email">
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Veuillez saisir une adresse email valide
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Choisir une date</mat-label>
+            <input matInput [matDatepicker]="picker" readonly  formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          
+          
+        <div>
+            <mat-form-field hintLabel="Max 10 characters" appearance="outline" >
+                <mat-label>Téléphone</mat-label>
+                <input type="number" matInput #input maxlength="10" placeholder="Ex. 0661141512" formControlName="phone">
+              </mat-form-field>
+        </div>
+        <div>
+          <button mat-raised-button>Valider</button>
+        </div>
+    </div>  
+  </form>
+</div>

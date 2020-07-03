@@ -1,0 +1,19 @@
+<div style="width: 100%; padding-top: 1%;"><h1 style="font-size: 35px; text-align: center;">Comptes</h1></div>
+   
+   <!--Activer ou desactiver Compte-->
+   <app-dashboard-account-table></app-dashboard-account-table>
+   <!--<app-dashboard-account-table *ngIf="Epargne" [accounts]="Epargnes" (ccompte)="oncompte($event)"></app-dashboard-account-table>
+    <app-dashboard-account-table  *ngIf="!Epargne" [accounts]="Cheques" (ccompte)="oncompte($event)"></app-dashboard-account-table>
+    --> 
+  <div class="container">
+    <div  class="info">
+       <!-- <p *ngIf="selected" >Account number : {{currentAccount.numcompte}}</p>
+        <p  *ngIf="selected"class="balance">${{currentAccount.balance}}</p>
+        -->
+       <p *ngIf="!selected">Veuillez selectionner un compte du tableau : </p>
+    </div>
+</div>
+<div class="b">
+   <div class="b1"><app-blocage-compte></app-blocage-compte></div> 
+    <div class="b2"><app-blocage-carte></app-blocage-carte></div>
+</div>

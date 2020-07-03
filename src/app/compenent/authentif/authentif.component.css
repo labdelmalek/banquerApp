@@ -1,0 +1,60 @@
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+    width: 300px;
+    
+  }
+  mat-form-field{
+      width: 80%; 
+      display: inline-block;
+      margin-bottom: 3%;
+      
+  }
+  example-right-align {
+      text-align: right;
+    }
+    
+    input.example-right-align::-webkit-outer-spin-button,
+    input.example-right-align::-webkit-inner-spin-button {
+      display: none;
+    }
+    
+    input.example-right-align {
+      -moz-appearance: textfield;
+    }
+  .example-container{
+      background-color: white;
+      width: 40%;
+      text-align: center;
+      padding-top: 3%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+      -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+      -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+      box-shadow:         3px 3px 5px 6px #ccc;    
+      border-radius: 10px;
+      padding-bottom: 3%;
+  }
+  button{
+      color: white;
+      background-color:  #0938D1;
+      display: inline-block;    
+  }
+  @media only screen and  (max-width:1024px){
+    .example-container{
+        width:45%;
+        font-size: 12pt!important;
+    }
+  }
+  @media only screen and  (max-width:800px){
+    .example-container{
+        width:60%!important;
+        font-size: 8pt!important;
+    }
+  }
+  h4{
+      color: #0938D1;
+  }
+  span{
+    color: rgb(104, 124, 192);
+  }
